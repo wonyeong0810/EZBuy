@@ -5,12 +5,7 @@ function App() {
 
   return (
     <>
-    <Layout>
-      dldldlldldldl
-      <Box1>
-        hello world wonyeong
-      </Box1>
-    </Layout>
+        바코드 스캔 고쳐보자~~
     </>
   )
 }
