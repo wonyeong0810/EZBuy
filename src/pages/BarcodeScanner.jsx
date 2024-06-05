@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
 function BarcodeScanner() {
 
@@ -52,12 +53,35 @@ function BarcodeScanner() {
     }, []);
 
     return (
-        <div>
-            <h1>Barcode Scanner</h1>
-            <video ref={videoRef} width="600" height="400" style={{ border: '1px solid black' }} />
-            {barcode && <p>Detected Barcode: {barcode}</p>}
-        </div>
+        <>
+            <Page>
+                <Qr ref={videoRef} width="600" height="400"/>
+                {barcode && <Test>Detected Barcode: {barcode}</Test>}
+            </Page>
+        </>
     );
 }
+
+const Page = styled.div`
+    position: relative; 
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+`
+const Qr = styled.video`
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+`
+
+const Test = styled.p`
+    color: white;
+    position: absolute; 
+    top: 10; 
+    left: 10;
+`
 
 export default BarcodeScanner;
