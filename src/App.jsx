@@ -1,11 +1,12 @@
 import './App.css'
 import styled from 'styled-components'
+import BarcodeScanner from './pages/BarcodeScanner'
 
 function App() {
 
   return (
     <>
-        바코드 스캔 고쳐보자~~
+        <BarcodeScanner></BarcodeScanner>
     </>
   )
 }
