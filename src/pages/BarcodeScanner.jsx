@@ -12,7 +12,7 @@ function BarcodeScanner() {
             return;
         }
 
-        const barcodeDetector = new BarcodeDetector({ formats: ['qr_code', 'ean_13', 'code_128'] });
+        const barcodeDetector = new BarcodeDetector({ formats: ['ean_13', 'code_128'] });
 
         const startVideo = async () => {
             try {
@@ -55,33 +55,26 @@ function BarcodeScanner() {
     return (
         <>
             <Page>
-                <Qr ref={videoRef} width="600" height="400"/>
+                <Qr ref={videoRef}></Qr>
                 {barcode && <Test>Detected Barcode: {barcode}</Test>}
             </Page>
         </>
     );
 }
 
-const Page = styled.div`
-    position: relative; 
-    width: 100vw;
-    height: 100vh;
+const Page = styled.div` 
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 `
 const Qr = styled.video`
-    position: absolute;
-    top: 0; 
-    left: 0; 
     width: 100%; 
-    height: 100%; 
+    height: 70dvh; 
     object-fit: cover; 
 `
 
 const Test = styled.p`
     color: white;
-    position: absolute; 
-    top: 10; 
-    left: 10;
 `
 
 export default BarcodeScanner;
