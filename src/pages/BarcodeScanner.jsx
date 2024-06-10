@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 function BarcodeScanner() {
-
+    const navigate = useNavigate();
     const videoRef = useRef(null);
     const [barcode, setBarcode] = useState(null);
 
@@ -52,11 +53,16 @@ function BarcodeScanner() {
         };
     }, []);
 
+    const handleSendClick = () => {
+        navigate('/test', { state: { barcode } });  // 다른 페이지로 이동하면서 상태 전달
+    };
+
     return (
         <>
             <Page>
                 <Qr ref={videoRef}></Qr>
                 {barcode && <Test>Detected Barcode: {barcode}</Test>}
+                <button onClick={handleSendClick}>보내기</button>
             </Page>
         </>
     );
