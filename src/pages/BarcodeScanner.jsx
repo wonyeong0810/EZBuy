@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import './no.css'
 
 function BarcodeScanner() {
     const navigate = useNavigate();
