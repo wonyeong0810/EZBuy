@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Item from './item';
+import Footer from './Footer';
 import './no.css'
 import styled from 'styled-components';
 
@@ -7,11 +8,12 @@ import styled from 'styled-components';
 
 function Cart() {
     const items = [
-        { id: 1, name: '상품 이름 1', price: 1000, imageUrl: '/assets/item1.jpg' },
-        { id: 2, name: '상품 이름 2', price: 2000, imageUrl: '/assets/item2.jpg' },
-        { id: 3, name: '상품 이름 3', price: 3000, imageUrl: '/assets/item3.jpg' },
-        { id: 4, name: '상품 이름 4', price: 4000, imageUrl: '/assets/item4.jpg' },
+        { id: 1, name: '상품 이름 1', price: 1000, imageUrl: 'item1.jpg' },
+        { id: 2, name: '상품 이름 2', price: 2000, imageUrl: 'item2.jpg' },
+        { id: 3, name: '상품 이름 3', price: 3000, imageUrl: 'item3.jpg' },
+        { id: 4, name: '상품 이름 4', price: 4000, imageUrl: 'item4.jpg' },
     ];
+
 
     const [counts, setCounts] = useState(items.map(() => 1));
     const [totalPrice, setTotalPrice] = useState(0);

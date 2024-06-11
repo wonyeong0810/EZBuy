@@ -55,7 +55,7 @@ function BarcodeScanner() {
     }, []);
 
     const handleSendClick = () => {
-        navigate('/test', { state: { barcode } });  // 다른 페이지로 이동하면서 상태 전달
+        navigate('/cart', { state: { barcode } });  // 다른 페이지로 이동하면서 상태 전달
     };
 
     return (
@@ -69,14 +69,18 @@ function BarcodeScanner() {
     );
 }
 
-const Page = styled.div` 
+const Page = styled.div`
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    // overflow: hidden;
 `
 const Qr = styled.video`
     width: 100%; 
-    height: 70dvh; 
+    height: 30dvh; 
     object-fit: cover; 
 `
 

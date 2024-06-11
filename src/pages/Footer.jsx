@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+
 const FooterContainer = styled.footer`
     position: fixed;
     bottom: 0px;
@@ -17,6 +18,20 @@ const StyledImage = styled.img`
   width: 45px;
   height: 45px;
 `;
+
+const PurchaseButton = styled.button`
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute; 
+    top: 50%;  
+    right: 10%;  
+    transform: translateY(-50%);
+`;
+
 
 const Button = styled.button`
     background-color: #D9D9D9;
@@ -43,12 +58,13 @@ function Footer() {
   useEffect(() => {
     const currentPath = window.location.pathname;
     if (currentPath === '/cart') {
-        setImageSrc('/public/main.svg');  // 예: 홈으로 가는 이미지
+        setImageSrc('/public/main.svg');  
     } else if (currentPath === '/') {
-        setImageSrc('/public/basket.svg');  // 예: 카트로 가는 이미지
+        setImageSrc('/public/basket.svg');  
 
     }
   }, [window.location.pathname]);
+
 
 
 
@@ -59,13 +75,21 @@ function Footer() {
         navigate('/');
     } else if (currentPath === '/') {
         navigate('/cart');
+    } else {
+      navigate('/');
     }
+
+    
   };
   return (
     <FooterContainer>
+      
       <Button onClick={handleNavigate}>
       <StyledImage src={imageSrc} alt="" />
       </Button>
+      <PurchaseButton onClick={() => { navigate('/purchase') }}>
+        구매하기
+      </PurchaseButton>
     </FooterContainer>
   );
 }
