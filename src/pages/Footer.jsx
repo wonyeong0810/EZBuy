@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -33,14 +33,38 @@ const Button = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    
 `;
 function Footer() {
   const navigate = useNavigate();
+  const [imageSrc, setImageSrc] = useState('/public/main.svg');
 
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+    if (currentPath === '/cart') {
+        setImageSrc('/public/main.svg');  // 예: 홈으로 가는 이미지
+    } else if (currentPath === '/') {
+        setImageSrc('/public/basket.svg');  // 예: 카트로 가는 이미지
+
+    }
+  }, [window.location.pathname]);
+
+
+
+  const handleNavigate = () => {
+    const currentPath = window.location.pathname;
+
+    if (currentPath === '/cart') {
+        navigate('/');
+    } else if (currentPath === '/') {
+        navigate('/cart');
+    }
+  };
   return (
     <FooterContainer>
-      <Button onClick={() => { navigate('/') }}>
-      <StyledImage src="/public/main.svg" alt="" />              
+      <Button onClick={handleNavigate}>
+      <StyledImage src={imageSrc} alt="" />
       </Button>
     </FooterContainer>
   );

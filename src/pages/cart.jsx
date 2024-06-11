@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from './item';
 import './no.css'
 import styled from 'styled-components';
@@ -6,51 +6,49 @@ import styled from 'styled-components';
 
 
 function Cart() {
-    const products = [
-        { id: 1, name: 'Product 1', price: 1000, image: '../assets/item1.jpeg' },
-        { id: 2, name: 'Product 2', price: 2000, image: '../assets/item2.jpeg' },
-        { id: 3, name: 'Product 3', price: 3000, image: '../assets/item3.jpeg' },
-        { id: 4, name: 'Product 4', price: 4000, image: '../assets/item4.jpeg' },
+    const items = [
+        { id: 1, name: '상품 이름 1', price: 1000, imageUrl: '/assets/item1.jpg' },
+        { id: 2, name: '상품 이름 2', price: 2000, imageUrl: '/assets/item2.jpg' },
+        { id: 3, name: '상품 이름 3', price: 3000, imageUrl: '/assets/item3.jpg' },
+        { id: 4, name: '상품 이름 4', price: 4000, imageUrl: '/assets/item4.jpg' },
     ];
+
+    const [counts, setCounts] = useState(items.map(() => 1));
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    const handleIncrement = index => {
+        const newCounts = [...counts];
+        newCounts[index] += 1;
+        setCounts(newCounts);
+    };
+
+    const handleDecrement = index => {
+        const newCounts = [...counts];
+        if (newCounts[index] > 1) {
+            newCounts[index] -= 1;
+            setCounts(newCounts);
+        }
+    };
+
+    useEffect(() => {
+        const newTotalPrice = counts.reduce((sum, count, index) => sum + count * items[index].price, 0);
+        setTotalPrice(newTotalPrice);
+    }, [counts]);
     return (
         <>
             <Items>
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-                <Item
-                    name="상품 이름" 
-                    price="₩1,000" 
-                    imageUrl="item1.jpg" // 여기에 이미지 URL을 입력하세요
-                />
-
+                {items.map((item, index) => (
+                    <Item 
+                        key={item.id}
+                        name={item.name}
+                        price={`₩${item.price}`}
+                        imageUrl={item.imageUrl}
+                        count={counts[index]}
+                        onIncrement={() => handleIncrement(index)}
+                        onDecrement={() => handleDecrement(index)}
+                    />
+                ))}
+                <TotalPrice>총 가격: ₩{totalPrice}</TotalPrice>
             </Items>
         </>
     );
@@ -65,5 +63,12 @@ const Items = styled.div`
     background-color: white;
 
 `
+const TotalPrice = styled.div`
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+    color: black;
+`;
 
 export default Cart;

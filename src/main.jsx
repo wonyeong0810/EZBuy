@@ -9,11 +9,14 @@ import Foot from './pages/Footer.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/Footer" element={<Foot />} />
-      </Routes>
+      <div>
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/cart" element={<Cart />} />
+            {/*<Route path="/Footer" element={<Foot />} />*/}
+          </Routes>
+          <Foot />
+      </div>
     </BrowserRouter>
   </React.StrictMode>,
 )
