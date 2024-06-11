@@ -2,19 +2,7 @@ import styled from 'styled-components';
 import React, { useState } from 'react';
 import './no.css'
 
-function Item({name, price, imageUrl}) {
-
-    const [count, setCount] = useState(1);
-
-    const handleIncrement = () => {
-        setCount(count + 1);
-    };
-
-    const handleDecrement = () => {
-        if (count > 1) {
-            setCount(count - 1);
-        }
-    };
+function Item({name, price, imageUrl, count, onIncrement, onDecrement}) {
 
 
     return (
@@ -26,9 +14,9 @@ function Item({name, price, imageUrl}) {
                     <Price>{price}</Price>
                 </TextContent>
                 <ButtonContainer>
-                    <Button onClick={handleDecrement}>-</Button>
+                    <Button onClick={onDecrement}>-</Button>
                     <Count>{count}</Count>
-                    <Button onClick={handleIncrement}>+</Button>
+                    <Button onClick={onIncrement}>+</Button>
                 </ButtonContainer>
             </StyledCard>
         </>
