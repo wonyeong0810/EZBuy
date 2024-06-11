@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import styled from 'styled-components';
+
 
 
 const FooterContainer = styled.footer`
@@ -53,17 +54,30 @@ const Button = styled.button`
 `;
 function Footer() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [imageSrc, setImageSrc] = useState('/public/main.svg');
+  const [totalPrice, setTotalPrice] = useState(location.state?.totalPrice);
+  const [total, setTotal] = useState(0);
+  const [flag, setFlag] = useState(false);
 
+  useEffect(() => {
+    setTotalPrice(location.state?.totalPrice);
+  },[location.state?.totalPrice]);
+
+  useEffect(() => {
+    setTotal(totalPrice)
+  }, [totalPrice]);
+  
   useEffect(() => {
     const currentPath = window.location.pathname;
     if (currentPath === '/cart') {
         setImageSrc('/public/main.svg');  
+        setFlag(true);
     } else if (currentPath === '/') {
         setImageSrc('/public/basket.svg');  
-
+        setFlag(false);
     }
-  }, [window.location.pathname]);
+  }, [window.location.pathname, flag]);
 
 
 
@@ -83,13 +97,24 @@ function Footer() {
   };
   return (
     <FooterContainer>
-      
+      {flag && <div 
+      style={{
+        position: 'absolute',
+        top: '10px',
+        left: '12px',
+        fontSize: '20px',
+        color: 'black',
+        fontWeight: 'bold',
+
+
+      }}>총 가격: {total}</div>}
       <Button onClick={handleNavigate}>
       <StyledImage src={imageSrc} alt="" />
+      
       </Button>
-      <PurchaseButton onClick={() => { navigate('/purchase') }}>
+      {flag && <PurchaseButton onClick={() => { navigate('/purchase') }}>
         구매하기
-      </PurchaseButton>
+      </PurchaseButton>}
     </FooterContainer>
   );
 }
