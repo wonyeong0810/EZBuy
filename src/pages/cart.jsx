@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
 import Item from './item';
-import Footer from './Footer';
+import { useState, useEffect } from 'react';
 import './no.css'
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Cart() {
+    const navigate = useNavigate();
+
     const items = [
         { id: 1, name: '상품 이름 1', price: 1000, imageUrl: 'item1.jpg' },
         { id: 2, name: '상품 이름 2', price: 2000, imageUrl: 'item2.jpg' },
@@ -18,12 +20,17 @@ function Cart() {
     const [counts, setCounts] = useState(items.map(() => 1));
     const [totalPrice, setTotalPrice] = useState(0);
 
+
+
+
     const handleIncrement = index => {
         const newCounts = [...counts];
         newCounts[index] += 1;
         setCounts(newCounts);
     };
 
+
+    // 상품 개수가 1일 되었을 때 -버튼을 비활성화되도록 수정
     const handleDecrement = index => {
         const newCounts = [...counts];
         if (newCounts[index] > 1) {
@@ -35,7 +42,9 @@ function Cart() {
     useEffect(() => {
         const newTotalPrice = counts.reduce((sum, count, index) => sum + count * items[index].price, 0);
         setTotalPrice(newTotalPrice);
-    }, [counts]);
+        navigate('/cart', { state: { counts, totalPrice } });
+    }, [counts, totalPrice]);
+
     return (
         <>
             <Items>
