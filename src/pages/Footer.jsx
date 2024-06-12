@@ -101,7 +101,7 @@ function Footer() {
       style={{
         position: 'absolute',
         top: '50%',
-        left: '30px',
+        left: '25px',
         fontSize: '20px',
         color: 'black',
         fontWeight: 'bold',
