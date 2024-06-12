@@ -107,7 +107,7 @@ function Footer() {
         fontWeight: 'bold',
 
 
-      }}>총 가격: {total}</div>}
+      }}>총 가격: ₩{total}</div>}
       <Button onClick={handleNavigate}>
       <StyledImage src={imageSrc} alt="" />
       

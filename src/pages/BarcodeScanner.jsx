@@ -63,7 +63,7 @@ function BarcodeScanner() {
             <Page>
                 <Qr ref={videoRef}></Qr>
                 {barcode && <Test>Detected Barcode: {barcode}</Test>}
-                <button onClick={handleSendClick}>보내기</button>
+                <button onClick={handleSendClick} style={{marginBottom:"100px"}}>보내기</button>
             </Page>
         </>
     );
@@ -87,5 +87,6 @@ const Qr = styled.video`
 const Test = styled.p`
     color: white;
 `
+
 
 export default BarcodeScanner;
