@@ -112,9 +112,9 @@ function Footer() {
       <StyledImage src={imageSrc} alt="" />
       
       </Button>
-      {flag && <PurchaseButton onClick={() => { navigate('/purchase') }}>
-        구매하기
-      </PurchaseButton>}
+        {flag && <PurchaseButton onClick={() => { navigate('/purchase', { state: { totalPrice: total } }) }}>
+            구매하기
+        </PurchaseButton>}
     </FooterContainer>
   );
 }
