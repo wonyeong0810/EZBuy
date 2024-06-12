@@ -72,15 +72,11 @@ function BarcodeScanner() {
 const Page = styled.div`
     width: 100%;
     height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     overflow: hidden;
 `
 const Qr = styled.video`
     width: 100%; 
-    height: 30dvh; 
+    height: 40dvh; 
     object-fit: cover; 
 `
 
