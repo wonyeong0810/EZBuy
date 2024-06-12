@@ -62,7 +62,7 @@ function BarcodeScanner() {
         <>
             <Page>
                 <Qr ref={videoRef}></Qr>
-                {barcode && <Test>Detected Barcode: {barcode}</Test>}
+                {/* {barcode && <Test>Detected Barcode: {barcode}</Test>} */}
                 <button onClick={handleSendClick} style={{marginBottom:"100px"}}>보내기</button>
             </Page>
         </>
