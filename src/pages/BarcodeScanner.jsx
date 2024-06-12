@@ -75,6 +75,7 @@ const Page = styled.div`
     overflow: hidden;
 `
 const Qr = styled.video`
+    margin-top: 100px;
     width: 100%; 
     height: 40dvh; 
     object-fit: cover; 

@@ -100,20 +100,21 @@ function Footer() {
       {flag && <div 
       style={{
         position: 'absolute',
-        top: '10px',
-        left: '12px',
+        top: '50%',
+        left: '30px',
         fontSize: '20px',
         color: 'black',
         fontWeight: 'bold',
+        transform: 'translate(0, -50%)'
 
 
-      }}>총 가격: ₩{total}</div>}
+      }}>₩{total}</div>}
       <Button onClick={handleNavigate}>
       <StyledImage src={imageSrc} alt="" />
       
       </Button>
         {flag && <PurchaseButton onClick={() => { navigate('/purchase', { state: { totalPrice: total } }) }}>
-            구매하기
+            구매
         </PurchaseButton>}
     </FooterContainer>
   );
